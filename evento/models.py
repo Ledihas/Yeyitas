@@ -1,6 +1,6 @@
 from django.db import connection, models
 import psycopg2
-from traitlets import This
+#from traitlets import This
 
 class Evento(models.Model):
     nombre = models.CharField(max_length=100)
@@ -44,9 +44,9 @@ class Reserva(models.Model):
 
     
     
-    def get_nombre():
+    #def get_nombre():
         
-        return This.a_nombre
+    #    return This.a_nombre
     
     def __str__(self):
         return self.a_nombre
