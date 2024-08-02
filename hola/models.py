@@ -1,8 +1,5 @@
 from django.db import models
-<<<<<<< HEAD
 
-
-=======
 from django.contrib import auth
 
 class Admin_log(models.Model):
@@ -13,4 +10,4 @@ class Admin_log(models.Model):
 
     def __str__(self):
         return self.nombre
->>>>>>> e26df79 (Descripción de los cambios realizados)
+
