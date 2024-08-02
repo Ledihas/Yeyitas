@@ -1,0 +1,63 @@
+<<<<<<< HEAD
+from django.db import models
+=======
+from django.db import connection, models
+import psycopg2
+from traitlets import This
+>>>>>>> e26df79 (Descripción de los cambios realizados)
+
+class Evento(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    presio = models.DecimalField(max_digits=8, decimal_places=2)
+    imagen = models.ImageField(upload_to='Eventos/', null=True, blank=True)
+    fecha = models.DateTimeField()
+
+    def __str__(self):
+        return self.nombre
+    
+<<<<<<< HEAD
+=======
+    
+class ReservaManager(models.Manager):
+        def eliminar(self, a_nombre):
+            
+            try:
+                conn = psycopg2.connect(
+                host="localhost",
+                database="postgres",
+                user="zaza",
+                password="1234"
+                )
+                cursor = conn.cursor()
+                cursor.execute(f""" 
+                            DELETE FROM public.evento_reserva WHERE a_nombre = %s
+                            """,(a_nombre,))
+                conn.commit()
+                #print(cursor.fetchone())
+                return f"Eliminados: {cursor.rowcount}"
+
+            
+            except Exception as error:
+                return {f"Error: {error}"}
+    
+>>>>>>> e26df79 (Descripción de los cambios realizados)
+class Reserva(models.Model):
+    nombre_evento = models.CharField(max_length=100)
+    a_nombre = models.CharField(max_length=100)
+    cantidad = models.IntegerField()
+<<<<<<< HEAD
+=======
+    objects = ReservaManager()
+    
+
+    
+    
+    def get_nombre():
+        
+        return This.a_nombre
+>>>>>>> e26df79 (Descripción de los cambios realizados)
+    
+    def __str__(self):
+        return self.a_nombre
+    

@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos disponibles</title>
+    <style>
+        /* Estilos generales */
+        body {
+
+            background-image:linear-gradient(to bottom,rgba(255, 255, 0, 0.5),rgba(0, 0, 255, 0.5)),url("{% static 'images/tabe.jpeg' %}");
+            background-size: cover; /* Cubre toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        /* Estilos para las ofertas */
+        .container {
+            
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+        }
+        form { 
+            animation: slideIn 5s ease-in-out;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            width: 400px; 
+        } 
+            label { 
+                display: block; 
+                font-weight: bold; 
+            }
+            input { 
+                width: 100%;
+                 padding: 8px; 
+                 border: 1px solid #ccc; 
+                 border-radius: 4px; 
+                 margin-bottom: 15px; 
+                } 
+                input[type="submit"] { 
+                    background-color: #ff6b6b; /* Color del botón */ 
+                    color: white; 
+                    padding: 10px 20px; 
+                    border: none; 
+                    border-radius: 4px; 
+                    cursor: pointer; 
+                    display: block; 
+                    margin: 0 auto; 
+                    transition: background-color 0.3s ease; 
+                } 
+                input[type="submit"]:hover { 
+                    background-color: #ff4d4d;
+                }
+
+    </style>
+</head>
+<body>
+   
+    <header>
+        <h1>Diga Reservación a eliminar</h1>
+    </header>
+
+        
+        <form action="{% url 'evento:delete_r' %}" method="post">
+            {% csrf_token %}
+            <h2>Reserva</h2> 
+        
+            <label for="a_nombre">A nombre de:</label>
+            <input type="text" id="a_nombre" name="a_nombre" required>
+        
+            <input type="submit" value="Eliminar">
+            {{exito}}
+        </form>
+        
+
+
+        
+</body>
+</html>
