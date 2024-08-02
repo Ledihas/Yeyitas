@@ -1,12 +1,8 @@
 from django.template import Template, Context
 from django.shortcuts import render
-<<<<<<< HEAD
-from django.http import HttpResponse
-=======
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from .models import *
->>>>>>> e26df79 (Descripción de los cambios realizados)
 
 # Create your views here.
 def hola_mundo(response):
@@ -90,8 +86,6 @@ def nosotros(request):
 
 def contacto(request):
     return render(request, 'contacto.html')
-<<<<<<< HEAD
-=======
 
 def login_supUser(request):
     if request.method == 'GET':
@@ -140,4 +134,3 @@ def logout(request):
                         </div>
                         
                         """)
->>>>>>> e26df79 (Descripción de los cambios realizados)

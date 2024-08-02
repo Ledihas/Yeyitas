@@ -10,11 +10,7 @@ class OfrtTab(models.Model):
         return self.nombre
 
 class Bebidas(OfrtTab):
-<<<<<<< HEAD
-    alcohol = models.DecimalField(max_digits=3,decimal_places=2,max_length=100)
-=======
     alcohol = models.DecimalField(max_digits=5,decimal_places=3)
->>>>>>> e26df79 (Descripción de los cambios realizados)
     
     def __str__(self):
         return self.nombre

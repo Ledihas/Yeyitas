@@ -37,13 +37,10 @@ urlpatterns = [
     path('evento/',include('evento.urls',namespace='reserva')),
     path('nosotros/', views.nosotros),
     path('contacto/', views.contacto),
-<<<<<<< HEAD
-=======
     path('jefeLog/',views.vista_login),
     path('adminSite/',views.login_supUser),
     path('evento/',include('evento.urls',namespace='reservas')),
     path('logout/',views.logout),
->>>>>>> e26df79 (Descripción de los cambios realizados)
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

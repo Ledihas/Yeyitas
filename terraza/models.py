@@ -17,11 +17,7 @@ class Helados(OfrtTerraza):
     
 
 class Bebidas(OfrtTerraza):
-<<<<<<< HEAD
-    alcohol = models.DecimalField(max_digits=8, decimal_places=2,max_length=100)
-=======
     alcohol = models.DecimalField(max_digits=5, decimal_places=3)
->>>>>>> e26df79 (Descripción de los cambios realizados)
 
     def __str__(self):
         return self.nombre

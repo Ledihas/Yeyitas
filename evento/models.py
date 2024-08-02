@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-from django.db import models
-=======
 from django.db import connection, models
 import psycopg2
 from traitlets import This
->>>>>>> e26df79 (Descripción de los cambios realizados)
 
 class Evento(models.Model):
     nombre = models.CharField(max_length=100)
@@ -16,8 +12,6 @@ class Evento(models.Model):
     def __str__(self):
         return self.nombre
     
-<<<<<<< HEAD
-=======
     
 class ReservaManager(models.Manager):
         def eliminar(self, a_nombre):
@@ -41,13 +35,10 @@ class ReservaManager(models.Manager):
             except Exception as error:
                 return {f"Error: {error}"}
     
->>>>>>> e26df79 (Descripción de los cambios realizados)
 class Reserva(models.Model):
     nombre_evento = models.CharField(max_length=100)
     a_nombre = models.CharField(max_length=100)
     cantidad = models.IntegerField()
-<<<<<<< HEAD
-=======
     objects = ReservaManager()
     
 
@@ -56,7 +47,6 @@ class Reserva(models.Model):
     def get_nombre():
         
         return This.a_nombre
->>>>>>> e26df79 (Descripción de los cambios realizados)
     
     def __str__(self):
         return self.a_nombre
