@@ -96,11 +96,10 @@ WSGI_APPLICATION = 'proyectoD.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://zaza:vYm9l7RU4hS6mxMGjyYpU8ltrfadOSaO@dpg-cqms9u5ds78s7393m9f0-a/postgres_yz14',
+        default='postgresql://zaza:1234@localhost:5432/postgres',
         conn_max_age=600    
          
     )}
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
