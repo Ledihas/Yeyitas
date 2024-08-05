@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta viewport para responsividad -->
     <title>Yeyita's Bar</title>
     <!-- Agregar Font Awesome para los íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -21,7 +21,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Cambiado para alinear desde arriba */
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
             overflow: auto;
@@ -30,20 +30,22 @@
         h1 {
             font-size: 60px;
             color: #ffcc00;
-            margin: 20px 0; /* Espacio arriba y abajo del título */
+            margin: 20px 0;
             font-family: 'Pacifico', cursive;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
             animation: slideIn 0.5s ease-in-out;
         }
-        h5{
+
+        h5 {
             animation: slideIn 1s ease-in-out;
         }
+
         p {
             font-size: 24px;
             color: #fff;
             max-width: 600px;
-            margin: 20px; /* Espacio alrededor del párrafo */
-            line-height: 1.5; /* Mejora la legibilidad */
+            margin: 20px;
+            line-height: 1.5;
             animation: slideIn 1.5s ease-in-out;
         }
 
@@ -52,19 +54,19 @@
             padding: 15px 30px;
             font-size: 18px;
             color: white;
-            background-color: #007bff; /* Color de fondo del botón */
+            background-color: #007bff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s; /* Transición suave */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             animation: fadeIn 1s ease-in-out 1s;
             animation-fill-mode: backwards;
         }
 
         .btn:hover {
-            background-color: #0056b3; /* Color de fondo al pasar el mouse */
-            transform: translateY(-2px); /* Efecto de elevación */
+            background-color: #0056b3;
+            transform: translateY(-2px);
         }
 
         .footer {
@@ -91,12 +93,13 @@
         /* Estilo para el carrusel */
         .carousel-container {
             justify-content: center; 
-            width: 80%; /* Ancho del carrusel al 80% */
+            width: 90%; /* Ancho del carrusel al 90% */
             max-width: 800px; /* Ancho máximo del carrusel */
             margin: 20px auto; /* Centra el carrusel horizontalmente */
             border-radius: 10px; /* Bordes redondeados */
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para el carrusel */
         }
+
         /* Animaciones */
         @keyframes fadeIn {
             0% {
@@ -129,9 +132,30 @@
         .carousel-caption {
             background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para la leyenda */
             border-radius: 5px; /* Bordes redondeados */
-            padding: 10px ; /* Espaciado interno */
+            padding: 10px; /* Espaciado interno */
             width: 40vh;
             left: 44vh;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+
+            p {
+                font-size: 18px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+
+            .btn {
+                padding: 10px 20px; /* Ajustar el tamaño del botón en pantallas pequeñas */
+                font-size: 16px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+
+            .carousel-caption {
+                width: 80%; /* Hacer que la leyenda ocupe más espacio en pantallas pequeñas */
+                left: 10%; /* Centrar la leyenda */
+            }
         }
     </style>
 </head>
