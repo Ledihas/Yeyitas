@@ -14,5 +14,5 @@ python manage.py migrate
 
 
 from django.contrib.auth.models import User
-user = User.objects.get(username='tu_nombre_de_usuario')
+user = User.objects.all()
 print(user)
