@@ -11,3 +11,8 @@ python manage.py collectstatic --no-input
 # Apply any outstanding database migrations
 python manage.py makemigrations
 python manage.py migrate
+
+
+from django.contrib.auth.models import User
+user = User.objects.get(username='tu_nombre_de_usuario')
+print(user)
