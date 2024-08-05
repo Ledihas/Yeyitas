@@ -91,13 +91,11 @@
         }
 
         /* Estilo para el carrusel */
+
         .carousel-container {
-            justify-content: center; 
-            width: 90%; /* Ancho del carrusel al 90% */
+            width: 90%; /* Ajustar el ancho del carrusel */
             max-width: 800px; /* Ancho máximo del carrusel */
-            margin: 20px auto; /* Centra el carrusel horizontalmente */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para el carrusel */
+            margin: 20px auto; /* Centrar el carrusel */
         }
 
         /* Animaciones */
@@ -133,10 +131,9 @@
             background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para la leyenda */
             border-radius: 5px; /* Bordes redondeados */
             padding: 10px; /* Espaciado interno */
-            width: 40vh;
-            left: 44vh;
+            width: 80%; /* Ancho del caption */
+            left: 10%; /* Centrar el caption */
         }
-
         /* Estilos responsivos */
         @media (max-width: 768px) {
             h1 {
@@ -151,10 +148,9 @@
                 padding: 10px 20px; /* Ajustar el tamaño del botón en pantallas pequeñas */
                 font-size: 16px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
             }
-
             .carousel-caption {
-                width: 80%; /* Hacer que la leyenda ocupe más espacio en pantallas pequeñas */
-                left: 10%; /* Centrar la leyenda */
+                width: 90%; /* Aumentar el ancho en pantallas pequeñas */
+                left: 5%; /* Centrar más en pantallas pequeñas */
             }
         }
     </style>
@@ -168,6 +164,7 @@
     <h1>Bienvenido a Yeyita's Bar 🍸</h1>
 
     <!-- Carrusel de imágenes -->
+        <!-- Carrusel de imágenes -->
     <div class="carousel-container">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -175,21 +172,21 @@
                     <img src="{% static 'images/copa.jpeg' %}" class="d-block w-100" alt="Imagen 1">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>¡Disfruta de nuestras copas!</h5>
-                        <p><a href="{% url 'taberna:bebidas' %}" class="btn">Ver Copas</a></p>
+                        <p><a href="{% url 'taberna:bebidas' %}" class="btn btn-primary">Ver Copas</a></p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{% static 'images/lol.jpg' %}" class="d-block w-100" alt="Imagen 2">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Ambiente acogedor</h5>
-                        <p><a href="{% url 'ofertas:ofertas' %}" class="btn">Ver Más</a></p>
+                        <p><a href="{% url 'ofertas:ofertas' %}" class="btn btn-primary">Ver Más</a></p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{% static 'images/even.jpeg' %}" class="d-block w-100" alt="Imagen 3">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>¡Eventos!</h5>
-                        <p><a href="{% url 'evento:eventos' %}" class="btn">Ver Eventos</a></p>
+                        <p><a href="{% url 'evento:eventos' %}" class="btn btn-primary">Ver Eventos</a></p>
                     </div>
                 </div>
             </div>
