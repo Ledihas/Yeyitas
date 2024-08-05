@@ -23,8 +23,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "proyectoD.settings")
 django.setup()
 
 # Crea el superusuario
-User = get_user_model()
-User.objects.create_superuser('jorge', 'jorge.abreu@gmail.com', 'titi1234')
+#User = get_user_model()
+#User.objects.create_superuser('jorge', 'jorge.abreu@gmail.com', 'titi1234')
 END
 
 echo "Tareas de construcción completadas."
