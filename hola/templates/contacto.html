@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas disponibles</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Vincula tu archivo CSS -->
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="navbar-brand">Yeyita's Bar</a>
+            <ul class="navbar-menu">
+                <li><a href="{% url 'ofertas:ofertas' %}">Servicios</a></li>
+                
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="/nosotros/">Sobre Nosotros</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2><a href="https://www.facebook.com/share/hHmgoKENWyyRxJdb/?mibextid=qi2Omg" class="contact">Facebook</a></h2>
+        
+        <a class="contact">|   Teléfono: 45569500    |</a>
+        <h2><a href="mailto:yeyitasbar@gmail.com" class="contact">Gmail</a></h2>
+    </div>
+
+
+</body>
+</html>

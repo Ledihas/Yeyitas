@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas disponibles</title>
+    <style>
+        /* Estilos generales */
+        body {
+
+            background-image:linear-gradient(to bottom,rgba(255, 255, 0, 0.5),rgba(0, 0, 255, 0.5)),url("{% static 'images/tabe.jpeg' %}");
+            background-size: cover; /* Cubre toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        /* Estilos para las ofertas */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .oferta {
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            max-width: 300px;
+            overflow: hidden;
+        }
+
+        .imagen {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .imagen img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .contenido {
+            padding: 20px;
+        }
+
+        .precio {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .alcohol {
+            color: #333;
+            font-weight: bold;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ofertas disponibles</h1>
+    </header>
+    
+    <div class="container">
+        {% for oferta in ofertas %}
+        <div class="oferta">
+            
+            <div class="imagen">
+                <img src="{{ oferta.imagen.url }}" alt="{{ oferta.nombre }}">
+            </div>
+           
+            <div class="contenido">
+                <h2>{{ oferta.nombre }}</h2>
+                <p>{{ oferta.descripcion }}</p>
+                <p class="precio">Precio: ${{ oferta.presio }}</p>
+                
+                 
+                {% if oferta.beneficio %}
+                <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
+                {% endif %}
+
+    
+                
+            </div>
+        </div>
+        {% empty %}
+        <p>No hay ofertas disponibles en este momento.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

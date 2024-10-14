@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A nombre de</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Altura completa de la ventana */
+            margin: 0;
+            background: linear-gradient(to right, #4CA1AF, blue);/* Color de fondo suave */
+            font-family: Arial, sans-serif; /* Fuente */
+            text-align: center; /* Centra el texto */
+        }
+
+        h1 {
+            color: white;
+            font-family: "Baskerville", sans-serif;
+            font-size: 48px;
+            text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%; /* Ajusta la imagen al contenedor */
+            height: 90%; /* Mantiene la proporción de la imagen */
+            border-radius: 10px; /* Bordes redondeados para la imagen */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para la imagen */
+            margin-bottom: 20px; /* Espacio debajo de la imagen */
+        }
+
+        p {
+            font-size: 24px;
+            color: white;
+            font-family: "Baskerville", sans-serif;
+            text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>A nombre de:</h1>
+    <img src="{% static 'images/1.jpeg' %}" alt="Imagen de Jorge Abreu"> <!-- Asegúrate de que la ruta sea correcta -->
+    <p>Jorge Abreu</p>
+    <a href="/jefeLog/" class="btn">¿Eres tú?</a>
+</body>
+</html>

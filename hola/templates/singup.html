@@ -1,0 +1,11 @@
+<h1>Login</h1>
+
+<form action= '/jefeLog/' method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button> Log </button>
+    
+</form>
+
+<a href="/" class="button"> Salir </a>

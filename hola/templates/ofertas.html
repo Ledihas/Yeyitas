@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta viewport para responsividad -->
+    <title>Servicios</title>
+    <style>
+        /* Estilos generales */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black; /* Fondo degradado */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilos para el contenedor */
+        .container {
+            background-color: black;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+            height: 80vh; /* Ajustar la altura del contenedor */
+            width: 90%; /* Ajustar el ancho del contenedor */
+            max-width: 600px; /* Ancho máximo del contenedor */
+        }
+
+        img {
+            max-width: 100%; /* Ajusta la imagen al contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para la imagen */
+            margin-bottom: 20px; /* Espacio debajo de la imagen */
+        }
+
+        /* Estilos para el título */
+        h1 {
+            color: white;
+            margin-top: 0;
+            animation: slideIn 1s ease-in-out;
+            font-size: 36px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+        }
+
+        /* Estilos para el botón */
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px; /* Ajustar el tamaño del botón en pantallas pequeñas */
+            font-size: 16px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            color: white;
+            background-color: #A00000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            animation: fadeIn 1s ease-in-out 1s;
+            animation-fill-mode: backwards;
+            margin-bottom: 10px; /* Espacio entre botones */
+        }
+
+        .btn:hover {
+            background-color: #990000;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .backy {
+            text-decoration: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: red;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .backy:hover {
+            color: #16AAF5;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .container {
+                height: auto; /* Ajustar la altura del contenedor en pantallas pequeñas */
+                padding: 20px; /* Reducir el espaciado interno en pantallas pequeñas */
+            }
+
+            img {
+                height: 200px; /* Ajustar la altura de la imagen en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="back">
+        <a href="/" class="backy"> Atrás </a>
+    </div>
+    <div class="container">
+        <img src="{% static 'images/icoy.jpeg' %}" alt="Imagen de Yeyitas">
+        <h1>Servicios</h1>
+        <a href="{% url 's_diurno:ofertasD' %}" class="btn">Servicio Rapido</a>
+        <a href="{% url 'terraza:ofertasT' %}" class="btn">Terraza</a>
+        <a href="{% url 'taberna:ofertasTa' %}" class="btn">Bar</a>
+    </div>
+</body>
+</html>

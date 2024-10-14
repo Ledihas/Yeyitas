@@ -1,0 +1,149 @@
+.navbar {
+    background: linear-gradient(#caa914, #1c27c2);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    opacity: 0.5;
+}
+
+.navbar-brand {
+    color: #09001f;
+    text-decoration: none;
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+.navbar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    margin-right: 20px;
+}
+
+.navbar-menu li {
+    margin-left: 20px;
+}
+
+.navbar-menu a {
+    color: #070701;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.navbar-menu a:hover {
+    color: #d4d4d4;
+}
+
+body {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5)), url('../images/tabe.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Cambiar a flex-start */
+    align-items: center;
+    padding-top: 70px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+h1,
+h2 {
+    margin: 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+    margin-top: 70px; /* Agregar margen superior para evitar que se superponga con el navbar */
+}
+
+.btn,
+.btn1,
+.btn2 {
+    color: rgb(226, 61, 32);
+    padding: 10px; /* Cambiar a un padding fijo */
+    margin: 10px;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px; /* Cambiar a un tamaño de fuente más pequeño */
+    background-size: cover;
+    background-position: center;
+    width: 200px; /* Establecer un ancho fijo */
+    max-width: none; /* Eliminar el ancho máximo */
+    animation: fadeIn 1s ease-in-out;
+    cursor: pointer;
+    background-image: none;
+    transition: background-image 0.5s, transform 0.6s;
+}
+
+.btn:hover,
+.btn1:hover,
+.btn2:hover {
+    transform: translateY(-5px);
+}
+
+.special-bg {
+    background-image: url('../images/desayuno.jpeg');
+    color: #ff0000;
+    opacity: 0.5;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .navbar-menu li {
+        margin-left: 10px;
+    }
+
+    .navbar-menu a {
+        font-size: 16px;
+    }
+
+    .container {
+        margin-top: 60px; /* Ajustar el margen superior para pantallas pequeñas */
+    }
+
+    .btn,
+    .btn1,
+    .btn2 {
+        padding: 8px; /* Reducir el padding en pantallas pequeñas */
+        font-size: 16px; /* Reducir el tamaño de fuente en pantallas pequeñas */
+        width: 150px; /* Reducir el ancho en pantallas pequeñas */
+    }
+}

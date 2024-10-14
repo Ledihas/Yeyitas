@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta viewport para responsividad -->
+    <title>Yeyita's Bar</title>
+    <!-- Agregar Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Agregar Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 25, 0, 0.2)), url("{% static 'images/fondo.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            overflow: auto;
+        }
+        
+        h1 {
+            font-size: 60px;
+            color: #ffcc00;
+            margin: 20px 0;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        h5 {
+            animation: slideIn 1s ease-in-out;
+        }
+
+        p {
+            font-size: 24px;
+            color: #fff;
+            max-width: 600px;
+            margin: 20px;
+            line-height: 1.5;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out 1s;
+            animation-fill-mode: backwards;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .crown-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: #ffcc00;
+            cursor: pointer;
+            transition: color 0.3s;
+            animation: slideIn 2.5s ease-in-out;
+        }
+
+        .crown-icon:hover {
+            color: #16AAF5;
+        }
+
+        /* Estilo para el carrusel */
+
+        .carousel-container {
+            width: 90%; /* Ajustar el ancho del carrusel */
+            max-width: 800px; /* Ancho máximo del carrusel */
+            margin: 20px auto; /* Centrar el carrusel */
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .carousel-item img {
+            width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+            height: auto; /* Mantiene la proporción de la imagen */
+            max-height: 400px; /* Altura máxima de las imágenes */
+            object-fit: cover; /* Cubre el área del contenedor sin deformar la imagen */
+            border-radius: 10px; /* Bordes redondeados para las imágenes */
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para la leyenda */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px; /* Espaciado interno */
+            width: 80%; /* Ancho del caption */
+            left: 10%; /* Centrar el caption */
+        }
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+
+            p {
+                font-size: 18px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+
+            .btn {
+                padding: 10px 20px; /* Ajustar el tamaño del botón en pantallas pequeñas */
+                font-size: 16px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+            .carousel-caption {
+                width: 90%; /* Aumentar el ancho en pantallas pequeñas */
+                left: 5%; /* Centrar más en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ícono de corona que ejecuta el método 'a_nombre' -->
+    <a href="{% url 'a_nombre:a_nombre' %}" class="crown-icon">
+        <i class="fas fa-crown"></i>
+    </a>
+
+    <h1>Bienvenido a Yeyita's Bar 🍸</h1>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="{% url 'taberna:bebidas' %}"> <!-- Envolver la imagen en un enlace -->
+                        <img src="{% static 'images/copa.jpeg' %}" class="d-block w-100" alt="Imagen 1">
+                    </a>
+                    <div class="carousel-caption d-md-block">
+                        <h5>¡Disfruta de nuestras copas!</h5>
+                        <p><a href="{% url 'taberna:bebidas' %}" class="btn btn-primary">Ver Copas</a></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="{% url 'ofertas:ofertas' %}"> <!-- Envolver la imagen en un enlace -->
+                        <img src="{% static 'images/lol.jpg' %}" class="d-block w-100" alt="Imagen 2">
+                    </a>
+                    <div class="carousel-caption d-md-block">
+                        <h5>Ambiente acogedor</h5>
+                        <p><a href="{% url 'ofertas:ofertas' %}" class="btn btn-primary">Ver Más</a></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="{% url 'evento:eventos' %}"> <!-- Envolver la imagen en un enlace -->
+                        <img src="{% static 'images/even.jpeg' %}" class="d-block w-100" alt="Imagen 3">
+                    </a>
+                    <div class="carousel-caption d-md-block">
+                        <h5>¡Eventos!</h5>
+                        <p><a href="{% url 'evento:eventos' %}" class="btn btn-primary">Ver Eventos</a></p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <p>Disfruta de las mejores bebidas y un ambiente acogedor. ¡Ven y vive una experiencia única!😅</p>
+    
+    <!-- Botón que redirige a la página de ofertas -->
+    <a href="{% url 'ofertas:ofertas' %}" class="btn">Ver nuestros servicios</a>
+    
+    <div class="footer">
+        &copy; 2024 Yeyita's Bar. Todos los derechos reservados.
+    </div>
+
+    <!-- Agregar Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
