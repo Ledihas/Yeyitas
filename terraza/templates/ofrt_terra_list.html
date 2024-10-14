@@ -79,11 +79,7 @@
     <div class="container">
         {% for oferta in ofertas %}
         <div class="oferta">
-            {% if oferta.imagen %}
-            <div class="imagen">
-                <img src="{{ oferta.imagen.url }}" alt="{{ oferta.nombre }}">
-            </div>
-            {% endif %}
+           
             <div class="contenido">
                 <h2>{{ oferta.nombre }}</h2>
                 <p>{{ oferta.descripcion }}</p>
