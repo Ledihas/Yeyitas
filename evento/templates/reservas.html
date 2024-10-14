@@ -95,10 +95,7 @@
             font-weight: bold;
         }
 
-        .alcohol {
-            color: #333;
-            font-weight: bold;
-        }
+        
         .btn{
 
             color: red;
@@ -176,11 +173,7 @@
     <div class="container">
         {% for oferta in ofertas %}
         <div class="oferta">
-            {% if oferta.imagen %}
-            <div class="imagen">
-                <img src="{{ oferta.imagen.url }}" alt="{{ oferta.nombre }}">
-            </div>
-            {% endif %}
+            
             <div class="contenido">
                 <h2> Nombre del Evento: {{ oferta.nombre_evento }}</h2>
                 <p> A nombre de: {{ oferta.a_nombre }}</p>
