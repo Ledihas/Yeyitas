@@ -6,3 +6,4 @@ psycopg2-binary==2.9.9
 pillow==10.4.0
 whitenoise==6.7.0
 uvicorn==0.30.3
+pytz==2024.1
