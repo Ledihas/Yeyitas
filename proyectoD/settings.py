@@ -100,8 +100,9 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 
-DATABASE_URL = os.environ.get('DATABASE_URL', 'postgres://zaza:VeNb2qc8oOhLHRfT1lrapNJpYJ5gu9xqVeNb2qc8oOhLHRfT1lrapNJpYJ5gu9xq@localhost:5432/postgre_k7bd')
+DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql://zaza:VeNb2qc8oOhLHRfT1lrapNJpYJ5gu9xq@dpg-cs6u1m56l47c738t9ejg-a.postgre_k7bd')
 
+# Usando dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
         default=DATABASE_URL,
