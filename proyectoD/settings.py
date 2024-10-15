@@ -93,13 +93,21 @@ WSGI_APPLICATION = 'proyectoD.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+from django.core.exceptions import ImproperlyConfigured
+
+# Extraer la URL de la base de datos
+db_url = "postgresql://zaza:VeNb2qc8oOhLHRfT1lrapNJpYJ5gu9xq@dpg-cs6u1m56l47c738t9ejg-a.oregon-postgres.render.com/postgre_k7bd"
+
+try:
+    # Intentar obtener la URL desde la variable de entorno
+    DATABASE_URL = os.environ.get('DATABASE_URL')
+except ImproperlyConfigured:
+    # Si no se puede obtener, usar la URL extraída
+    DATABASE_URL = db_url
+
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        'default': dj_database_url.config(default=os.environ.get('postgresql://zaza:VeNb2qc8oOhLHRfT1lrapNJpYJ5gu9xq@dpg-cs6u1m56l47c738t9ejg-a.oregon-postgres.render.com/postgre_k7bd'))
-        conn_max_age=600    
-         
-    )}
+    'default': dj_database_url.config(default=DATABASE_URL)
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
