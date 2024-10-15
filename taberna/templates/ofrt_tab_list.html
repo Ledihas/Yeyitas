@@ -9,10 +9,9 @@
     <style>
         /* Estilos generales */
         body {
-
             background-image:linear-gradient(to bottom,rgba(255, 255, 0, 0.5),rgba(0, 0, 255, 0.5)),url("{% static 'images/tabe.jpeg' %}");
-            background-size: cover; /* Cubre toda la pantalla */
-            background-position: center; /* Centra la imagen */
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             font-family: Arial, sans-serif;
             margin: 0;
@@ -71,9 +70,12 @@
             font-weight: bold;
         }
 
-        
-        
-
+        .texto-oferta {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -85,19 +87,18 @@
         {% for oferta in ofertas %}
         <div class="oferta">
             
-            
+            <div class="imagen">
+                <img src="{% static 'images/vasos.jpg' %}" alt="Vasos">
+            </div>
+
             <div class="contenido">
-                <h2>{{ oferta.nombre }}</h2>
-                <p>{{ oferta.descripcion }}</p>
-                <p class="precio">Precio: ${{ oferta.presio }}</p>
+                <h2 class="texto-oferta">{{ oferta.nombre }}</h2>
+                <p class="texto-oferta">{{ oferta.descripcion }}</p>
+                <p class="precio">Precio: ${{ oferta.precio }}</p>
                 
-                 
                 {% if oferta.beneficio %}
                 <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
                 {% endif %}
-
-    
-                
             </div>
         </div>
         {% empty %}
