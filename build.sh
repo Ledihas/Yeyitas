@@ -17,9 +17,9 @@ python manage.py migrate --noinput
 python manage.py createsuperuser
 
 echo "Creando superusuario..."
-if [[ $CREATE_SUPERUSER ]]; then
-    python manage.py createsuperuser --no-input --email $DJANGO_SUPERUSER_EMAIL --username $DJANGO_SUPERUSER_USERNAME
-fi
+#if [[ $CREATE_SUPERUSER ]]; then
+#    python manage.py createsuperuser --no-input --email $DJANGO_SUPERUSER_EMAIL --username $DJANGO_SUPERUSER_USERNAME
+#fi
 
 
 echo "Tareas de construcción completadas."
