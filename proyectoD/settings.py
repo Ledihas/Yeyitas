@@ -101,14 +101,10 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgre_k7bd',
-        'USER': 'zaza',
-        'PASSWORD': 'VeNb2qc8oOhLHRfT1lrapNJpYJ5gu9xq',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default= 'postgresql://zaza:1234@localhost/postgres',
+        conn_max_age=600
+    )
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
