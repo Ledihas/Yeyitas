@@ -9,20 +9,17 @@
     <style>
         /* Estilos generales */
         body {
-
-            background-image:linear-gradient(to bottom,rgba(255, 255, 0, 0.5),rgba(0, 0, 255, 0.5)),url("{% static 'images/tabe.jpeg' %}");
-            background-size: cover; /* Cubre toda la pantalla */
-            background-position: center; /* Centra la imagen */
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
+            background-color: #000; /* Fondo negro */
+            font-family: 'Montserrat', sans-serif; /* Fuente moderna */
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            color: #fff; /* Texto blanco */
         }
 
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: #222; /* Un tono más claro para el encabezado */
+            color: #FFD700; /* Color dorado */
             padding: 20px;
             text-align: center;
         }
@@ -37,14 +34,13 @@
             flex-wrap: wrap;
             justify-content: center;
             padding: 20px;
-            background-color: transparent;
         }
 
         .oferta {
-            background-color: rgba(0, 0, 0.5, 0.5);
+            background-color: rgba(255, 215, 0, 0.1); /* Fondo dorado claro */
             color:white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             margin: 20px;
             max-width: 300px;
             overflow: hidden;
@@ -67,13 +63,9 @@
         }
 
         .precio {
-            color: #333;
+            color: #FFD700; /* Precio en dorado */
             font-weight: bold;
         }
-
-        
-        
-
     </style>
 </head>
 <body>
@@ -84,18 +76,18 @@
     <div class="container">
         {% for oferta in ofertas %}
         <div class="oferta">
-            
+            <div class="imagen">
+                <img src="{{ oferta.imagen_url }}" alt="{{ oferta.nombre }}">
+            </div>
             
             <div class="contenido">
                 <h2>{{ oferta.nombre }}</h2>
                 <p>{{ oferta.descripcion }}</p>
-                <p class="precio">Precio: ${{ oferta.presio }}</p>
-                
+                <p class="precio">Precio: ${{ oferta.precio }}</p>
                  
                 {% if oferta.beneficio %}
                 <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
                 {% endif %}
-
     
                 
             </div>
