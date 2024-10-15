@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'proyectoD.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://zaza:1234@localhost:5432/postgres',
+        default='postgresql://zaza:VeNb2qc8oOhLHRfT1lrapNJpYJ5gu9xq@dpg-cs6u1m56l47c738t9ejg-a/postgre_k7bd',
         conn_max_age=600    
          
     )}
