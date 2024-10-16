@@ -46,18 +46,6 @@
             overflow: hidden;
         }
 
-        .imagen {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .imagen img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-
         .contenido {
             padding: 20px;
         }
@@ -97,16 +85,14 @@
     <div class="container">
         {% for oferta in ofertas %}
         <div class="oferta">
-            <div class="imagen">
-                <img src="{{ oferta.imagen_url }}" alt="{{ oferta.nombre }}">
-            </div>
             <div class="contenido">
                 <h2>{{ oferta.nombre }}</h2>
                 <p>{{ oferta.descripcion }}</p>
-                <p class="precio">Precio: ${{ oferta.precio }}</p>
+                <p class="precio">Precio: ${{ oferta.presio }}</p>
                 {% if oferta.beneficio %}
-                <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
+                    <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
                 {% endif %}
+
             </div>
         </div>
         {% empty %}
