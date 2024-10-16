@@ -15,7 +15,6 @@
             padding: 0;
             min-height: 100vh;
             color: #fff; /* Texto blanco */
-            position: relative; /* Para posicionar elementos absolutos */
         }
 
         header {
@@ -32,7 +31,8 @@
         /* Estilos para las ofertas */
         .container {
             display: flex;
-            flex-direction: column; /* Cambiado a columna para listar una debajo de otra */
+            flex-direction: column; /* Cambiado a columna para mostrar ofertas una bajo la otra */
+            align-items: center;
             padding: 20px;
         }
 
@@ -41,13 +41,14 @@
             color:white;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            margin: 10px 0; /* Margen cambiado a solo top y bottom */
-            padding: 20px; /* Añadido padding para mejor separación */
-            overflow: hidden;
+            margin: 20px;
+            padding: 15px; /* Añadido padding para mejorar el aspecto */
+            width: 80%; /* Ancho del contenedor de oferta */
+            max-width: 500px; /* Ancho máximo */
         }
 
         .contenido {
-            padding: 20px;
+            padding: 10px;
         }
 
         .precio {
@@ -55,21 +56,9 @@
             font-weight: bold;
         }
 
-        /* Estilo para el año en la esquina superior */
-        .year {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px; /* Tamaño de fuente del año */
-            color: #FFD700; /* Color dorado */
-        }
-
-        /* Estilo para la imagen de copas en la esquina inferior */
-        .clink-image {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 80px; /* Ajusta el tamaño según sea necesario */
+        .imagen-copas {
+            display: block;
+            margin: 20px auto; /* Centrar la imagen */
         }
     </style>
 </head>
@@ -78,10 +67,9 @@
         <h1>Ofertas disponibles</h1>
     </header>
 
-    <!-- Año en la esquina superior -->
-    <div class="year">2024</div>
+    <!-- Imagen decorativa -->
+    <img src="{% static 'images/copas_chocando.png' %}" alt="Copas chocando" class="imagen-copas">
 
-    <!-- Contenedor de ofertas -->
     <div class="container">
         {% for oferta in ofertas %}
         <div class="oferta">
@@ -89,19 +77,17 @@
                 <h2>{{ oferta.nombre }}</h2>
                 <p>{{ oferta.descripcion }}</p>
                 <p class="precio">Precio: ${{ oferta.presio }}</p>
+                 
                 {% if oferta.beneficio %}
-                    <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
+                <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
                 {% endif %}
-
+    
+                
             </div>
         </div>
         {% empty %}
         <p>No hay ofertas disponibles en este momento.</p>
         {% endfor %}
     </div>
-
-    <!-- Imagen de copas chocando -->
-    <img src="{% static 'images/copas_chocando.png' %}" alt="Copas chocando" class="clink-image">
-
 </body>
 </html>
