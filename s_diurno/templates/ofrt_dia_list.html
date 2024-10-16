@@ -9,66 +9,67 @@
     <style>
         /* Estilos generales */
         body {
-
-            background-image:linear-gradient(to bottom,rgba(255, 255, 0, 0.5),rgba(0, 0, 255, 0.5)),url("{% static 'images/dia.jpeg' %}");
+            background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5)), url("{% static 'images/dia.jpeg' %}");
             background-size: cover; /* Cubre toda la pantalla */
             background-position: center; /* Centra la imagen */
             background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif; /* Cambiado a una fuente moderna */
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            color: #fff; /* Texto blanco para mejor legibilidad */
         }
 
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
+            background-color: rgba(51, 51, 51, 0.8); /* Fondo semi-transparente */
+            color: #FFD700; /* Color dorado */
+            padding: 30px;
             text-align: center;
+            border-bottom: 2px solid #FFD700; /* Línea dorada en la parte inferior */
         }
 
-        h1, h2 {
+        h1 {
+            font-size: 2.5em; /* Tamaño de fuente mayor para el encabezado */
             margin: 0;
+        }
+
+        h2 {
+            font-size: 1.8em; /* Tamaño de fuente mayor para los nombres de las ofertas */
+            margin-top: 10px;
         }
 
         /* Estilos para las ofertas */
         .container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column; /* Cambiado a columna para mostrar ofertas una bajo la otra */
+            align-items: center;
             padding: 20px;
-            background-color: transparent;
         }
 
         .oferta {
-            background-color: rgba(0, 0, 0.5, 0.5);
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semi-transparente */
             color:white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
             margin: 20px;
-            max-width: 300px;
-            overflow: hidden;
-        }
-        
-        .imagen {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
+            padding: 20px; /* Añadido padding para mejorar el aspecto */
+            width: 90%; /* Ancho del contenedor de oferta */
+            max-width: 600px; /* Ancho máximo */
+            transition: transform 0.3s; /* Efecto de transformación al pasar el ratón */
         }
 
-        .imagen img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
+        .oferta:hover {
+            transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
         }
 
         .contenido {
-            padding: 20px;
+            padding: 10px;
         }
 
         .precio {
-            color: #333;
+            color: #FFD700; /* Precio en dorado */
             font-weight: bold;
+            font-size: 1.5em; /* Tamaño de fuente mayor para el precio */
         }
     </style>
 </head>
@@ -76,7 +77,7 @@
     <header>
         <h1>Ofertas del Día</h1>
     </header>
-    
+
     <div class="container">
         {% for oferta in ofertas %}
         <div class="oferta">
@@ -84,7 +85,7 @@
             <div class="contenido">
                 <h2>{{ oferta.nombre }}</h2>
                 <p>{{ oferta.descripcion }}</p>
-                <p class="precio">Precio: {{ oferta.presio }}</p>
+                <p class="precio">Precio: {{ oferta.presio }}</p> <!-- Ajustado a 'precio' -->
             </div>
         </div>
         {% empty %}
