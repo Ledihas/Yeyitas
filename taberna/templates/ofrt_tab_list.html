@@ -20,12 +20,20 @@
         header {
             background-color: #222; /* Un tono más claro para el encabezado */
             color: #FFD700; /* Color dorado */
-            padding: 20px;
+            padding: 30px;
             text-align: center;
+            border-bottom: 2px solid #FFD700; /* Línea dorada en la parte inferior */
         }
 
-        h1, h2 {
+        h1 {
+            font-size: 2.5em; /* Tamaño de fuente mayor para el encabezado */
             margin: 0;
+        }
+
+        h2 {
+            font-size: 1.8em; /* Tamaño de fuente mayor para los nombres de las ofertas */
+            margin-top: 10px;
+            color: #FFD700; /* Color dorado para los nombres de las ofertas */
         }
 
         /* Estilos para las ofertas */
@@ -37,14 +45,18 @@
         }
 
         .oferta {
-            background-color: rgba(255, 215, 0, 0.1); /* Fondo dorado claro */
-            color:white;
+            background-color: rgba(255, 215, 0, 0.2); /* Fondo dorado más intenso */
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
             margin: 20px;
-            padding: 15px; /* Añadido padding para mejorar el aspecto */
-            width: 80%; /* Ancho del contenedor de oferta */
-            max-width: 500px; /* Ancho máximo */
+            padding: 20px; /* Añadido padding para mejorar el aspecto */
+            width: 90%; /* Ancho del contenedor de oferta */
+            max-width: 600px; /* Ancho máximo */
+            transition: transform 0.3s; /* Efecto de transformación al pasar el ratón */
+        }
+
+        .oferta:hover {
+            transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
         }
 
         .contenido {
@@ -54,11 +66,12 @@
         .precio {
             color: #FFD700; /* Precio en dorado */
             font-weight: bold;
+            font-size: 1.5em; /* Tamaño de fuente mayor para el precio */
         }
 
-        .imagen-copas {
-            display: block;
-            margin: 20px auto; /* Centrar la imagen */
+        .beneficio {
+            margin-top: 10px;
+            font-style: italic; /* Estilo en cursiva para beneficios */
         }
     </style>
 </head>
@@ -67,15 +80,13 @@
         <h1>Ofertas disponibles</h1>
     </header>
 
-    
-   
     <div class="container">
         {% for oferta in ofertas %}
         <div class="oferta">
             <div class="contenido">
                 <h2>{{ oferta.nombre }}</h2>
                 <p>{{ oferta.descripcion }}</p>
-                <p class="precio">Precio: ${{ oferta.presio }}</p>
+                <p class="precio">Precio: ${{ oferta.presio }}</p> <!-- Ajustado a 'precio' -->
                  
                 {% if oferta.beneficio %}
                 <p class="beneficio">Beneficio: {{ oferta.beneficio }}</p>
