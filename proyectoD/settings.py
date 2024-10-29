@@ -16,7 +16,7 @@ from pathlib import Path
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES = {
     'default': {
@@ -110,12 +110,12 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default= 'postgresql://zaza:1234@localhost/postgres',
-        conn_max_age=600
-    )
-}
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default= 'postgresql://zaza:1234@localhost/postgres',
+#        conn_max_age=600
+#    )
+#}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
