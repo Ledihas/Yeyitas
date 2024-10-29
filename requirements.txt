@@ -10,6 +10,6 @@ uvicorn==0.30.3
 pytz==2024.1
 djongo
 whitenoise==6.7.0
-sqlparse==0.2.4
+sqlparse
 tzdata==2024.1
 Brotli==1.1.0
