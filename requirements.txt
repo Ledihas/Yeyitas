@@ -13,3 +13,4 @@ tzdata
 Brotli
 six==1.16.0
 psycopg2
+pymongo
