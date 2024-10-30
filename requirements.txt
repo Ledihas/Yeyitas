@@ -1,6 +1,6 @@
 dj-database-url
 asgiref
-Django
+Django==4.1.13
 djangorestframework
 gunicorn
 pillow
@@ -11,4 +11,4 @@ djongo
 sqlparse
 tzdata
 Brotli
-six
+six==1.16.0
