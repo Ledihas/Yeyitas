@@ -21,9 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'yeyitas',  # Si necesitas especificarlo
+        # Si necesitas especificarlo
         'CLIENT': {
-            'host': os.environ.get('MONGO_URI')
+            'host': mongodb+srv://zahidel:zaza@database.d7kju.mongodb.net/yeyitas?retryWrites=true&w=majority&appName=database
         }
     }
 }
