@@ -23,7 +23,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         # Si necesitas especificarlo
         'CLIENT': {
-            'host': mongodb+srv://zahidel:zaza@database.d7kju.mongodb.net/yeyitas?retryWrites=true&w=majority&appName=database
+            'host': 'mongodb+srv://zahidel:zaza@database.d7kju.mongodb.net/yeyitas?retryWrites=true&w=majority&appName=database'
         }
     }
 }
