@@ -18,15 +18,23 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        # Si necesitas especificarlo
-        'CLIENT': {
-            'host': 'mongodb+srv://zahidel:zaza@database.d7kju.mongodb.net/yeyitas?retryWrites=true&w=majority&appName=database'
-        }
-    }
-}
+#DATABASES = {
+#    'default': {
+ #       'ENGINE': 'djongo',
+  #      # Si necesitas especificarlo
+   #     'CLIENT': {
+    #        'host': os.environ.get('MONGO_URI')
+     #   }
+    #}
+#}
+
+from pymongo import MongoClient
+
+DATABASE_NAME = 'yeyitas'
+DATABASE_HOST = 'mongodb+srv://zahidel:zaza@database.mongodb.net/yeyitas?retryWrites=true&w=majority'
+
+client = MongoClient(DATABASE_HOST)
+db = client[DATABASE_NAME]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -47,6 +55,7 @@ if RENDER_EXTERNAL_HOSTNAME :
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 """if not DEBUG:    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
@@ -54,6 +63,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Application definition
 """
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
