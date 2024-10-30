@@ -29,12 +29,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #}
 
 from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
 
+# Database configuration
 DATABASE_NAME = 'yeyitas'
 DATABASE_HOST = 'mongodb+srv://zahidel:zaza@database.mongodb.net/yeyitas?retryWrites=true&w=majority&appName=database'
 
-client = MongoClient(DATABASE_HOST)
-db = client[DATABASE_NAME]
+try:
+  # Attempt to connect to MongoDB
+  client = MongoClient(DATABASE_HOST)
+  db = client[DATABASE_NAME]
+  print("Conexión exitosa a la base de datos:", DATABASE_NAME)
+except ConnectionFailure as e:
+  # Handle connection error
+  print(f"Error de conexión a la base de datos {DATABASE_NAME}: {e}")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
