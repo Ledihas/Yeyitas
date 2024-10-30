@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from pymongo import MongoClient
 
 DATABASE_NAME = 'yeyitas'
-DATABASE_HOST = 'mongodb+srv://zahidel:zaza@database.mongodb.net/yeyitas?retryWrites=true&w=majority'
+DATABASE_HOST = 'mongodb+srv://zahidel:zaza@database.mongodb.net/yeyitas?retryWrites=true&w=majority&appName=database'
 
 client = MongoClient(DATABASE_HOST)
 db = client[DATABASE_NAME]
