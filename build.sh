@@ -10,6 +10,7 @@ pip3 install -r requirements.txt
 
 # Install Djongo and Pymongo if not in requirements
 pip3 install --upgrade djongo #pymongo
+python -m pip install "pymongo[aws]"
 
 # Convert static asset files
 rm -rf staticfiles/
