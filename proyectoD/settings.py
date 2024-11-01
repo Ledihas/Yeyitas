@@ -82,7 +82,7 @@ INSTALLED_APPS = [
     's_diurno',
     'terraza',
     'taberna','evento',
-    'djongo',
+    
     
 ]
 
