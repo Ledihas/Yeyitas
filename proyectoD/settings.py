@@ -18,15 +18,7 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#DATABASES = {
-#    'default': {
- #       'ENGINE': 'djongo',
-  #      # Si necesitas especificarlo
-   #     'CLIENT': {
-    #        'host': os.environ.get('MONGO_URI')
-     #   }
-    #}
-#}
+
 
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
