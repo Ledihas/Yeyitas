@@ -6,7 +6,10 @@ set -o errexit
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip3 install --upgrade pip
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
+
+pip install --upgrade djongo pymongo
+
 
 # Convert static asset files
 rm -rf staticfiles/
