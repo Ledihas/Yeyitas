@@ -33,7 +33,7 @@ from pymongo.errors import ConnectionFailure
 
 # Database configuration
 DATABASE_NAME = 'yeyitas'
-DATABASE_HOST = 'mongodb+srv://zahidel:zaza@database.mongodb.net/yeyitas?retryWrites=true&w=majority&appName=database'
+DATABASE_HOST = 'mongodb+srv://zahide:1234@database.d7kju.mongodb.net/?retryWrites=true&w=majority&appName=database'
 
 try:
   # Attempt to connect to MongoDB
