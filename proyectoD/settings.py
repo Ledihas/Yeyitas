@@ -32,17 +32,24 @@ from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
 # Database configuration
-DATABASE_NAME = 'yeyitas'
-DATABASE_HOST = 'mongodb+srv://zahide:1234@database.d7kju.mongodb.net/?retryWrites=true&w=majority&appName=database'
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'yeyitas',
+        'CLIENT': {
+            'host': 'mongodb+srv://zahide:1234@database.d7kju.mongodb.net/?retryWrites=true&w=majority&appName=database'
+        }
+    }
+}
 
 try:
-  # Attempt to connect to MongoDB
-  client = MongoClient(DATABASE_HOST)
-  db = client[DATABASE_NAME]
-  print("Conexión exitosa a la base de datos:", DATABASE_NAME)
+    # Attempt to connect to MongoDB
+    client = MongoClient(DATABASES['default']['CLIENT']['host'])
+    db = client[DATABASES['default']['NAME']]
+    print("Conexión exitosa a la base de datos:", DATABASES['default']['NAME'])
 except ConnectionFailure as e:
-  # Handle connection error
-  print(f"Error de conexión a la base de datos {DATABASE_NAME}: {e}")
+    # Handle connection error
+    print(f"Error de conexión a la base de datos {DATABASES['default']['NAME']}: {e}")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
