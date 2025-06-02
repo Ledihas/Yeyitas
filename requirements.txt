@@ -15,4 +15,4 @@ six==1.16.0
 psycopg2
 dnspython
 pymongo==3.11.0
-distutils==0.3.4
+distutils==3.13.3
