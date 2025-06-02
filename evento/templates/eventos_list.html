@@ -1,185 +1,186 @@
+{% extends 'home.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos disponibles</title>
-    <style>
-        /* Estilos generales */
-        body {
+{% block title %}Eventos disponibles | Yeyita's Bar{% endblock %}
 
-            background-image:linear-gradient(to bottom,rgba(255, 255, 0, 0.5),rgba(0, 0, 255, 0.5)),url('botellas.jpeg');
-            
-            background-position: center; /* Centra la imagen */
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+{% block content %}
+<style>
+    /* Mantenemos tu estilo de fondo y contenedores, pero quitamos el formulario flotante */
+    body {
+        background-image:
+            linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5)),
+            url("{% static 'images/botellas.jpeg' %}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1, h2 {
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .container-eventos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .evento-card {
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        margin: 15px;
+        width: 280px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .evento-card .imagen {
+        height: 180px;
+        overflow: hidden;
+    }
+
+    .evento-card .imagen img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .evento-card .contenido {
+        padding: 15px;
+        flex-grow: 1;
+    }
+
+    .evento-card .contenido h2 {
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        color: #ffcc00;
+    }
+
+    .evento-card .contenido p {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .evento-card .contenido .fecha-hora {
+        font-style: italic;
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+
+    .evento-card .acciones {
+        padding: 15px;
+        text-align: center;
+        background-color: rgba(51, 51, 51, 0.8);
+    }
+
+    .btn-reservar {
+        background-color: #990000; /* Rojo vino */
+        color: #ffcc00;           /* Dorado */
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .btn-reservar:hover {
+        background-color: #660000; /* Rojo vino más oscuro */
+        color: #ffffff;
+    }
+
+    .alert {
+        width: 80%;
+        max-width: 600px;
+        margin: 10px auto;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .alert-success {
+        background-color: #DFF2D8;
+        color: #4F8A10;
+    }
+
+    .alert-error {
+        background-color: #F2DEDE;
+        color: #A12622;
+    }
+
+    @media (max-width: 768px) {
+        .evento-card {
+            width: 90%;
         }
+    }
+</style>
 
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
+<header>
+    <h1>Eventos disponibles</h1>
+</header>
 
-        h1, h2 {
-            margin: 0;
-        }
+{# Mostrar mensajes de Django (éxito / error) #}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 
-        /* Estilos para las ofertas */
-        
-
-        /* Animaciones */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideIn {
-            0% {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-            background-color: transparent;
-        }
-
-        .oferta {
-            background-color: rgba(0, 0, 0.5, 0.5);
-            color:white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            max-width: 300px;
-            overflow: hidden;
-        }
-        .imagen {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .imagen img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-
-        .contenido {
-            padding: 20px;
-        }
-
-        .precio {
-            color: #333;
-            font-weight: bold;
-        }
-
-        
-        form { 
-            animation: slideIn 5s ease-in-out;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: white; 
-            padding: 10px 15px; 
-            border-radius: 5px; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-            width: 400px; 
-        } 
-            label { 
-                display: block; 
-                font-weight: bold; 
-            }
-            input { 
-                width: 100%;
-                 padding: 8px; 
-                 border: 1px solid #ccc; 
-                 border-radius: 4px; 
-                 margin-bottom: 15px; 
-                } 
-                input[type="submit"] { 
-                    background-color: #ff6b6b; /* Color del botón */ 
-                    color: white; 
-                    padding: 10px 20px; 
-                    border: none; 
-                    border-radius: 4px; 
-                    cursor: pointer; 
-                    display: block; 
-                    margin: 0 auto; 
-                    transition: background-color 0.3s ease; 
-                } 
-                input[type="submit"]:hover { 
-                    background-color: #ff4d4d;
-                }
-
-    </style>
-</head>
-<body>
-   
-    <header>
-        <h1>Eventos disponibles</h1>
-    </header>
-    
-    <div class="container">
-        {% for oferta in ofertas %}
-        <div class="oferta">
-            
-            
-            
+<div class="container-eventos">
+    {% for evento in eventos %}
+        <div class="evento-card">
+            {% if evento.imagen %}
+                <div class="imagen">
+                    <img src="{{ evento.imagen.url }}" alt="Imagen de {{ evento.titulo }}">
+                </div>
+            {% endif %}
             <div class="contenido">
-                <h2>{{ oferta.nombre }}</h2>
-                <p>{{ oferta.descripcion }}</p>
-                <p class="precio">Precio: ${{ oferta.presio }}</p>
-                <p>{{ oferta.fecha }}</p>
-            
-                
+                <h2>{{ evento.titulo }}</h2>
+                <p>{{ evento.descripcion|truncatechars:80 }}</p>
+                <p class="fecha-hora">
+                    Fecha: {{ evento.fecha }} &nbsp;|&nbsp; Hora: {{ evento.hora }}
+                </p>
+            </div>
+            <div class="acciones">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:make_reservation' evento.id %}" class="btn-reservar">
+                        Reservar ahora
+                    </a>
+                {% else %}
+                    <p style="font-size: 0.9rem; margin-bottom: 8px;">Debes iniciar sesión para reservar.</p>
+                    <a href="{% url 'accounts:login' %}" class="btn-reservar" style="background-color: #ffcc00; color: #660000; margin-right: 5px;">
+                        Iniciar Sesión
+                    </a>
+                    <a href="{% url 'accounts:register' %}" class="btn-reservar" style="background-color: #cc9900; color: #ffffff;">
+                        Registrarse
+                    </a>
+                {% endif %}
             </div>
         </div>
-        {% empty %}
-        <p>No hay ebentos disponibles en este momento.</p>
-        {% endfor %}
-        
-        <form action="{% url 'evento:eventos' %}" method="post">
-            {% csrf_token %}
-            <h2>Reservar</h2> 
-            <label for="cantidad">Cantidad de personas:</label>
-            <input type="number" id="cantidad" name="cantidad" required>
-        
-            <label for="a_nombre">A nombre de:</label>
-            <input type="text" id="a_nombre" name="a_nombre" required>
-        
-            <label for="nombre_evento">Nombre del evento:</label>
-            <input type="text" id="nombre_evento" name="nombre_evento" required>
-        
-            <input type="submit" value="Reservar">
-            {{exito}}
-        </form>
-        
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-success">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-
-        
-</body>
-</html>
+    {% empty %}
+        <p style="color: white; font-size: 1.1rem; text-align: center; width: 100%; margin-top: 40px;">
+            No hay eventos disponibles en este momento.
+        </p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -41,6 +41,8 @@ urlpatterns = [
     path('adminSite/',views.login_supUser),
     path('evento/',include('evento.urls',namespace='reservas')),
     path('logout/',views.logout),
+    path('evento/', include('evento.urls')),  # Asumiendo que existe una app 'evento'
+    path('', include('core.urls')),  # O la app que maneje la home
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mis Reservas | Yeyita's Bar{% endblock %}
+
+{% block content %}
+<h2>Mis Reservas</h2>
+
+{% if reservas %}
+    <ul>
+        {% for reserva in reservas %}
+            <li>
+                <strong>{{ reserva.event.title }}</strong> —
+                Fecha: {{ reserva.event.date }} —
+                Hora: {{ reserva.event.time }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No tienes reservas aún.</p>
+{% endif %}
+{% endblock %}

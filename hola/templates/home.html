@@ -75,6 +75,36 @@
             color: #ccc;
         }
 
+        :root {
+            --vino: #660000;
+            --dorado: #D4AF37;
+            --madera: #4F2C1D;
+            --blanco: #FDFDFD;
+        }
+
+        .logo a {
+            color: var(--dorado);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-links li a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-links li a:hover {
+            color: var(--dorado);
+        }
+
         .crown-icon {
             position: absolute;
             top: 20px;
@@ -160,6 +190,17 @@
     <a href="{% url 'a_nombre:a_nombre' %}" class="crown-icon">
         <i class="fas fa-crown"></i>
     </a>
+    {% if user.is_authenticated %}
+    <div style="position: absolute; top: 20px; right: 20px; color: white;">
+        Hola, {{ user.username }} |
+        <a href="{% url 'accounts:logout' %}" style="color: #ffcc00;">Cerrar sesión</a>
+    </div>
+    {% else %}
+    <div style="position: absolute; top: 20px; right: 20px;">
+        <a href="{% url 'accounts:login' %}" class="btn btn-sm btn-light">Iniciar sesión</a>
+        <a href="{% url 'accounts:register' %}" class="btn btn-sm btn-warning">Registrarse</a>
+    </div>
+    {% endif %}
 
     <h1>Bienvenido a Yeyita's Bar 🍸</h1>
 

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registro | Yeyita's Bar{% endblock %}
+
+{% block content %}
+<h2>Registrar nuevo usuario</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+        <label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+    </div>
+    <div>
+        <label for="{{ form.email.id_for_label }}">Correo electrónico:</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+    </div>
+    <div>
+        <label for="{{ form.password.id_for_label }}">Contraseña:</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+    </div>
+    <div>
+        <label for="{{ form.password2.id_for_label }}">Repetir contraseña:</label>
+        {{ form.password2 }}
+        {{ form.password2.errors }}
+    </div>
+    <button type="submit">Registrarse</button>
+</form>
+{% endblock %}

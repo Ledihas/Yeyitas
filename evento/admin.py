@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Evento)
 admin.site.register(Reserva)
+
