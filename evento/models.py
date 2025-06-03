@@ -1,9 +1,9 @@
-from django.db import connection, models
+from djongo import models
 import psycopg2
 #from traitlets import This
 
 class Evento(models.Model):
-    _id = models.IntegerField(primary_key=True)
+    _id = models.ObjectIdField(primary_key=True)
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     presio = models.DecimalField(max_digits=8, decimal_places=2)
