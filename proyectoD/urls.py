@@ -20,6 +20,7 @@ from hola import views
 import s_diurno
 from django.conf import settings
 from django.conf.urls.static import static
+import accounts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,6 +42,7 @@ urlpatterns = [
     path('adminSite/',views.login_supUser),
     path('evento/',include('evento.urls',namespace='reservas')),
     path('logout/',views.logout),
+    path('accounts/', include('accounts.urls', namespace= 'accounts')),
    # path('evento/', include('evento.urls')),  # Asumiendo que existe una app 'evento'
     #path('', include('hola.urls')),  # O la app que maneje la home
 ]
