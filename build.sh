@@ -6,7 +6,6 @@ set -o errexit
 pip3 install --upgrade pip
 
 # Install dependencies
-sudo apt-get install python3-distutils
 pip3 install -r requirements.txt
 
 # Install Djongo and Pymongo if not in requirements
