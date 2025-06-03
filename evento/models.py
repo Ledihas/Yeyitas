@@ -37,6 +37,7 @@ class ReservaManager(models.Manager):
                 return {f"Error: {error}"}
     
 class Reserva(models.Model):
+    _id = models.IntegerField(primary_key=True, auto_created=True)
     nombre_evento = models.CharField(max_length=100)
     a_nombre = models.CharField(max_length=100)
     
