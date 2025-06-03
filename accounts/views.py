@@ -10,7 +10,7 @@ from evento.models import Evento
 
 def register_view(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('')
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -28,14 +28,14 @@ def register_view(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('')
     if request.method == 'POST':
         form = UserLoginForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             messages.success(request, f"¡Bienvenido, {user.username}!")
-            return redirect('home')
+            return redirect('')
         else:
             messages.error(request, "Credenciales inválidas.")
     else:
@@ -46,7 +46,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.info(request, "Has cerrado sesión exitosamente.")
-    return redirect('home')
+    return redirect('')
 
 @login_required
 def make_reservation(request, event_id):
