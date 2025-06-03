@@ -24,7 +24,7 @@ import accounts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.Home),
+    path('',views.Home, name='home'),
     path('s_diurno/', include('s_diurno.urls',namespace='s_diurno')),
     path('s_diurno/', include('s_diurno.urls',namespace='desayuno')),
     path('s_diurno/', include('s_diurno.urls',namespace='dia')),
