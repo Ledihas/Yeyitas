@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import UserRegistrationForm, UserLoginForm
 from .models import Reservation
-from evento.models import Event
+from evento.models import Evento
 
 def register_view(request):
     if request.user.is_authenticated:
@@ -55,8 +55,8 @@ def make_reservation(request, event_id):
     """
     user = request.user
     try:
-        event = Event.objects.get(pk=event_id)
-    except Event.DoesNotExist:
+        event = Evento.objects.get(pk=event_id)
+    except Evento.DoesNotExist:
         messages.error(request, "El evento no existe.")
         return redirect('event_list')
     
