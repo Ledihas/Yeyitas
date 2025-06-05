@@ -1,16 +1,22 @@
+# accounts/views.py (asumo que es este archivo)
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy # Importado pero no usado directamente en estas vistas
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserRegistrationForm, UserLoginForm
 from .models import Reservation
 from evento.models import Evento
 
+# --- Vista de Registro ---
 def register_view(request):
+    # Lógica: Si el usuario ya está autenticado, no tiene sentido que se registre de nuevo.
+    # Redirección: Lo enviamos a la lista principal de eventos.
     if request.user.is_authenticated:
-        return redirect('evento:eventos')
+        messages.info(request, "Ya estás autenticado.")
+        return redirect('evento:eventos') # Redirige a la lista de eventos de la app 'evento'
+
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -18,38 +24,58 @@ def register_view(request):
             pwd = form.cleaned_data['password']
             new_user.set_password(pwd)
             new_user.save()
+
             messages.success(request, "Registro exitoso. Ya puedes iniciar sesión.")
-            return redirect('login')
+            # Lógica: Tras un registro exitoso, llevar al usuario a la página de login para que inicie sesión.
+            # Redirección: 'accounts:login' es el patrón de login dentro del namespace 'accounts'.
+            return redirect('accounts:login')
         else:
             messages.error(request, "Por favor corrige los errores en el formulario.")
-    else:
+    else: # GET request
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
 
-def login_view(request):
+# --- Vista de Inicio de Sesión ---
+def login_view(request): # NOTA: Tenías dos definiciones de login_view, asegúrate de tener solo una.
+    # Lógica: Si el usuario ya está autenticado, no debe ver la página de login.
+    # Redirección: Lo enviamos a la lista principal de eventos.
     if request.user.is_authenticated:
+        messages.info(request, "Ya estás autenticado.")
         return redirect('evento:eventos')
+
     if request.method == 'POST':
         form = UserLoginForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+
             messages.success(request, f"¡Bienvenido, {user.username}!")
+            # Lógica: Tras un login exitoso, dirigir al usuario a la página deseada.
+            # 'evento:eventos' es una buena elección como página de bienvenida.
+            # También podrías usar `settings.LOGIN_REDIRECT_URL` si lo tienes configurado.
             return redirect('evento:eventos')
         else:
             messages.error(request, "Credenciales inválidas.")
-    else:
+    else: # GET request
         form = UserLoginForm()
     return render(request, 'accounts/login.html', {'form': form})
 
+# --- Vista de Cerrar Sesión ---
 @login_required
 def logout_view(request):
+    # Lógica: Cerrar la sesión del usuario.
     logout(request)
     messages.info(request, "Has cerrado sesión exitosamente.")
+    # Lógica: Tras cerrar sesión, redirigir a una página pública.
+    # Redirección: 'ofertas:ofertas' es el patrón que tienes definido para tu lista de ofertas.
+    # Si quieres redirigir al login o a la home, usarías:
+    # return redirect('accounts:login') # Redirige a la página de login
+    # return redirect('home') # Redirige a la página de inicio del sitio
     return redirect('ofertas:ofertas')
 
+# --- Vista para Hacer una Reserva ---
 @login_required
-def make_reservation(request, event_id):
+def make_reservation(request, event_id): # NOTA: Tenías dos definiciones de make_reservation, asegúrate de tener solo una.
     """
     Vista para que el usuario haga una reserva a un evento.
     """
@@ -58,91 +84,32 @@ def make_reservation(request, event_id):
         event = Evento.objects.get(pk=event_id)
     except Evento.DoesNotExist:
         messages.error(request, "El evento no existe.")
-        return redirect('event_list')
-    
-    # Verificar si ya existe reserva
-    existing = Reservation.objects.filter(user=user, event=event).exists()
-    if existing:
-        messages.error(request, "Ya tienes una reserva para este evento.")
-        return redirect('event_detail', event_id=event.id)
-
-    # Crear reserva
-    Reservation.objects.create(user=user, event=event)
-    messages.success(request, f"Reserva confirmada para el evento: {event.title}")
-    return redirect('user_reservations')
-
-@login_required
-def user_reservations(request):
-    """
-    Muestra las reservas del usuario.
-    """
-    reservas = Reservation.objects.filter(user=request.user).select_related('event')
-    return render(request, 'accounts/user_reservations.html', {'reservas': reservas})
-
-def login_view(request):
-    # Lógica: Si el usuario ya está autenticado, redirigir a la página de eventos.
-    if request.user.is_authenticated:
+        # Lógica: Si el evento no existe, redirigir a la lista de eventos.
+        # Redirección: 'evento:eventos' es el patrón para la lista de eventos.
         return redirect('evento:eventos')
 
-    if request.method == 'POST':
-        form = UserLoginForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user() # Obtiene el usuario autenticado
-            login(request, user) # Establece la sesión del usuario
-
-            messages.success(request, f"¡Bienvenido, {user.username}!")
-            # Lógica: Redirigir después de un login exitoso.
-            # Si tienes LOGIN_REDIRECT_URL en settings.py, podrías usarlo.
-            # Si quieres una redirección específica, esta es correcta.
-            return redirect('evento:eventos')
-        else:
-            messages.error(request, "Credenciales inválidas.") # Mensaje genérico por seguridad
-    else: # Si el método es GET, mostrar un formulario vacío
-        form = UserLoginForm()
-    return render(request, 'accounts/login.html', {'form': form})
-
-@login_required
-def make_reservation(request, event_id):
-    """
-    Vista para que el usuario haga una reserva a un evento.
-    """
-    user = request.user
-    try:
-        # Lógica: Obtener el evento por su ID.
-        # Corrección: El nombre del campo ID en Evento.
-        # Si estás usando djongo y no definiste _id explícitamente, Django usa 'id'.
-        event = Evento.objects.get(pk=event_id)
-    except Evento.DoesNotExist:
-        messages.error(request, "El evento no existe.")
-        # Lógica: Redirigir si el evento no existe.
-        # Corrección: 'event_list' debe ser un nombre de patrón de URL existente.
-        # Es mejor usar el namespace si lo tienes, por ejemplo:
-        return redirect('evento:eventos') # O a la lista de eventos principal
-
-    # Lógica: Verificar si el usuario ya tiene una reserva para este evento.
+    # Lógica: Evitar reservas duplicadas.
     existing = Reservation.objects.filter(user=user, event=event).exists()
     if existing:
         messages.error(request, "Ya tienes una reserva para este evento.")
-        # Lógica: Redirigir a los detalles del evento si ya reservó.
-        # Corrección: 'event_detail' debe ser un nombre de patrón de URL existente.
-        # Asegúrate de que el nombre del parámetro URL sea 'pk' si eso espera tu URLconf.
-        return redirect('evento:detalle_evento', pk=event.id) # Suponiendo 'detalle_evento' para detalles del evento
+        # Lógica: Si ya reservó, redirigir a la página de detalles de ese evento.
+        # Redirección: 'evento:detalle_evento' es el patrón para los detalles del evento.
+        # Le pasamos el 'pk' del evento.
+        return redirect('evento:detalle_evento', pk=event.pk) # ¡Corregido en urls.py de evento!
 
-    # Lógica: Crear la reserva si no existe.
+    # Lógica: Crear la reserva.
     Reservation.objects.create(user=user, event=event)
-    messages.success(request, f"Reserva confirmada para el evento: {event.nombre}") # Usar event.nombre si es el campo correcto
-    # Lógica: Redirigir a las reservas del usuario después de confirmar.
-    # Corrección: 'user_reservations' debe ser un nombre de patrón de URL existente.
-    return redirect('accounts:user_reservations') # Suponiendo que tus URLs de cuentas tienen namespace 'accounts'
+    # Lógica: Mensaje de confirmación. Asumo que el modelo Evento tiene un campo 'nombre'.
+    messages.success(request, f"Reserva confirmada para el evento: {event.nombre if hasattr(event, 'nombre') else event.title}")
+    # Lógica: Después de reservar, llevar al usuario a su lista de reservas.
+    # Redirección: 'accounts:user_reservations' es el patrón para las reservas del usuario.
+    return redirect('accounts:user_reservations')
 
-
+# --- Vista para Mostrar Reservas del Usuario ---
 @login_required
 def user_reservations(request):
     """
     Muestra las reservas del usuario.
     """
-    # Lógica: Obtener todas las reservas del usuario actual.
-    # `select_related('event')` es una buena práctica para optimizar consultas
-    # si 'event' es un ForeignKey y necesitas acceder a sus campos en la plantilla.
     reservas = Reservation.objects.filter(user=request.user).select_related('event')
     return render(request, 'accounts/user_reservations.html', {'reservas': reservas})
