@@ -1,186 +1,299 @@
-{% extends 'home.html' %}
 {% load static %}
 
 {% block title %}Eventos disponibles | Yeyita's Bar{% endblock %}
 
-{% block content %}
+{% block head %}
 <style>
-    /* Mantenemos tu estilo de fondo y contenedores, pero quitamos el formulario flotante */
+  /* Estilos generales */
+  body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    color: white;
+  }
+
+  /* Contenedor principal */
+  .container-eventos {
+    background-color: #111;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 900px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  /* Título principal */
+  header h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-align: center;
+    animation: slideIn 1s ease-in-out;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Tarjetas de evento */
+  .evento-card {
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    margin-bottom: 25px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  /* Imagen del evento */
+  .evento-card .imagen {
+    flex: 0 0 180px;
+    overflow: hidden;
+  }
+
+  .evento-card .imagen img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Contenido del evento */
+  .evento-card .contenido {
+    padding: 20px 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .evento-card .contenido h2 {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+    color: #ffcc00;
+  }
+
+  .evento-card .contenido p {
+    font-size: 1rem;
+    margin: 0 0 8px 0;
+    color: #ddd;
+  }
+
+  .evento-card .contenido .fecha-hora {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #bbb;
+  }
+
+  /* Área de acciones */
+  .evento-card .acciones {
+    background-color: #330000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 160px;
+  }
+
+  /* Botones */
+  .btn-reservar {
+    background-color: #990000;
+    color: #ffcc00;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .btn-reservar:hover {
+    background-color: #660000;
+    color: #fff;
+  }
+
+  /* Botones alternativos para login/registro */
+  .btn-login {
+    background-color: #ffcc00;
+    color: #660000;
+    margin-right: 8px;
+  }
+
+  .btn-login:hover {
+    background-color: #e6b800;
+    color: #330000;
+  }
+
+  .btn-register {
+    background-color: #cc9900;
+    color: #fff;
+  }
+
+  .btn-register:hover {
+    background-color: #b27f00;
+  }
+
+  /* Mensajes de alerta */
+  .alert {
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .alert-success {
+    background-color: #DFF2D8;
+    color: #4F8A10;
+  }
+
+  .alert-error {
+    background-color: #F2DEDE;
+    color: #A12622;
+  }
+
+  /* Mensaje sin eventos */
+  .no-eventos {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ccc;
+    padding: 40px 20px;
+  }
+
+  /* Animaciones */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     body {
-        background-image:
-            linear-gradient(to bottom, rgba(255, 255, 0, 0.5), rgba(0, 0, 255, 0.5)),
-            url("{% static 'images/botellas.jpeg' %}");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-    }
-
-    header {
-        background-color: #333;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-    }
-
-    h1, h2 {
-        margin: 0;
-        text-transform: uppercase;
+      padding: 20px 10px;
+      align-items: center;
     }
 
     .container-eventos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
-        background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      width: 100%;
+      max-width: 100%;
     }
 
     .evento-card {
-        background-color: rgba(0, 0, 0, 0.6);
-        color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        margin: 15px;
-        width: 280px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
+      flex-direction: column;
+      align-items: center;
     }
 
     .evento-card .imagen {
-        height: 180px;
-        overflow: hidden;
+      width: 100%;
+      flex: none;
+      height: 200px;
     }
 
     .evento-card .imagen img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .evento-card .contenido {
-        padding: 15px;
-        flex-grow: 1;
-    }
-
-    .evento-card .contenido h2 {
-        font-size: 1.25rem;
-        margin-bottom: 8px;
-        color: #ffcc00;
-    }
-
-    .evento-card .contenido p {
-        font-size: 0.9rem;
-        margin-bottom: 6px;
-    }
-
-    .evento-card .contenido .fecha-hora {
-        font-style: italic;
-        font-size: 0.85rem;
-        margin-bottom: 12px;
+      padding: 15px 10px;
+      text-align: center;
     }
 
     .evento-card .acciones {
-        padding: 15px;
-        text-align: center;
-        background-color: rgba(51, 51, 51, 0.8);
+      width: 100%;
+      min-width: auto;
+      padding: 15px 10px;
+      flex-direction: row;
+      justify-content: center;
     }
 
     .btn-reservar {
-        background-color: #990000; /* Rojo vino */
-        color: #ffcc00;           /* Dorado */
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
+      width: auto;
+      margin: 0 5px;
+      padding: 10px 20px;
     }
-
-    .btn-reservar:hover {
-        background-color: #660000; /* Rojo vino más oscuro */
-        color: #ffffff;
-    }
-
-    .alert {
-        width: 80%;
-        max-width: 600px;
-        margin: 10px auto;
-        padding: 12px 20px;
-        border-radius: 6px;
-        text-align: center;
-        font-weight: 500;
-    }
-
-    .alert-success {
-        background-color: #DFF2D8;
-        color: #4F8A10;
-    }
-
-    .alert-error {
-        background-color: #F2DEDE;
-        color: #A12622;
-    }
-
-    @media (max-width: 768px) {
-        .evento-card {
-            width: 90%;
-        }
-    }
+  }
 </style>
+{% endblock %}
 
+{% block content %}
 <header>
-    <h1>Eventos disponibles</h1>
+  <h1>Eventos disponibles</h1>
 </header>
 
 {# Mostrar mensajes de Django (éxito / error) #}
 {% if messages %}
-    {% for message in messages %}
-        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-            {{ message }}
-        </div>
-    {% endfor %}
+  {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
 {% endif %}
 
 <div class="container-eventos">
-    {% for evento in eventos %}
-        <div class="evento-card">
-            {% if evento.imagen %}
-                <div class="imagen">
-                    <img src="{{ evento.imagen.url }}" alt="Imagen de {{ evento.titulo }}">
-                </div>
-            {% endif %}
-            <div class="contenido">
-                <h2>{{ evento.titulo }}</h2>
-                <p>{{ evento.descripcion|truncatechars:80 }}</p>
-                <p class="fecha-hora">
-                    Fecha: {{ evento.fecha }} &nbsp;|&nbsp; Hora: {{ evento.hora }}
-                </p>
-            </div>
-            <div class="acciones">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'accounts:make_reservation' evento.id %}" class="btn-reservar">
-                        Reservar ahora
-                    </a>
-                {% else %}
-                    <p style="font-size: 0.9rem; margin-bottom: 8px;">Debes iniciar sesión para reservar.</p>
-                    <a href="{% url 'accounts:login' %}" class="btn-reservar" style="background-color: #ffcc00; color: #660000; margin-right: 5px;">
-                        Iniciar Sesión
-                    </a>
-                    <a href="{% url 'accounts:register' %}" class="btn-reservar" style="background-color: #cc9900; color: #ffffff;">
-                        Registrarse
-                    </a>
-                {% endif %}
-            </div>
+  {% for evento in eventos %}
+    <div class="evento-card">
+      {% if evento.imagen %}
+        <div class="imagen">
+          <img src="{{ evento.imagen.url }}" alt="Imagen de {{ evento.titulo }}">
         </div>
-    {% empty %}
-        <p style="color: white; font-size: 1.1rem; text-align: center; width: 100%; margin-top: 40px;">
-            No hay eventos disponibles en este momento.
+      {% endif %}
+      <div class="contenido">
+        <h2>{{ evento.titulo }}</h2>
+        <p>{{ evento.descripcion|truncatechars:80 }}</p>
+        <p class="fecha-hora">
+          Fecha: {{ evento.fecha }} &nbsp;|&nbsp; Hora: {{ evento.hora }}
         </p>
-    {% endfor %}
+      </div>
+      <div class="acciones">
+        {% if user.is_authenticated %}
+          <a href="{% url 'accounts:make_reservation' evento.id %}" class="btn-reservar">
+            Reservar ahora
+          </a>
+        {% else %}
+          <p style="font-size: 0.9rem; margin-bottom: 8px; color: #ffcc00;">
+            Debes iniciar sesión para reservar.
+          </p>
+          <a href="{% url 'accounts:login' %}" class="btn-reservar btn-login">
+            Iniciar Sesión
+          </a>
+          <a href="{% url 'accounts:register' %}" class="btn-reservar btn-register">
+            Registrarse
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    <p class="no-eventos">
+      No hay eventos disponibles en este momento.
+    </p>
+  {% endfor %}
 </div>
 {% endblock %}
