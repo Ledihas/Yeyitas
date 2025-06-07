@@ -49,7 +49,7 @@ def eventos_list(request):
                     extio.close()
                     ctc= Context()
                     documento = plt.render(ctc)
-                    return render(request, 'eventos_list.html', {'ofertas': eventos,'exito':documento})
+                    return render(request, 'eventos_list.html', {'eventos': eventos,'exito':documento})
                     # Puedes cambiar esto por una redirección a otra vista
                 else:
                     return render(request, 'eventos_list.html', {'exito': 'Ya existe reservacion a ene nombre'})
