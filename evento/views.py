@@ -57,7 +57,7 @@ def eventos_list(request):
             # Manejar el error si los datos no son válidos
             return HttpResponse("Error: Todos los campos son obligatorios.")
 
-    return render(request, 'eventos_list.html', {'ofertas': eventos})
+    return render(request, 'eventos_list.html', {'eventos': eventos})
 
 extio = open('hola/templates/exito.html')
 
