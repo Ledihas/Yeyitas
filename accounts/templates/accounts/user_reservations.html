@@ -1,7 +1,56 @@
-{% extends 'home.html' %}
 {% load static %}
 
 {% block title %}Mis Reservas | Yeyita's Bar{% endblock %}
+
+{% block head %}
+<style>
+  /* Estilos generales */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 20px;
+  }
+
+  h2 {
+    color: #b34700;
+    font-size: 2rem;
+    border-bottom: 2px solid #b34700;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    background-color: #fff3e0;
+    border: 1px solid #ffcc80;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(179, 71, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+
+  li:hover {
+    background-color: #ffe0b2;
+  }
+
+  strong {
+    color: #b34700;
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-style: italic;
+    color: #777;
+    font-size: 1.1rem;
+  }
+</style>
+{% endblock %}
 
 {% block content %}
 <h2>Mis Reservas</h2>
